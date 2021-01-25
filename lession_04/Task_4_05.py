@@ -3,6 +3,7 @@
 Необходимо получить результат вычисления произведения всех элементов списка.
 Подсказка: использовать функцию reduce()."""
 from functools import reduce
+
 def multiplication(x, y):
     return x * y
 

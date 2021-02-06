@@ -14,42 +14,37 @@ class Matrix:
         self.matrix = list
 
     def __str__(self):
+        print('матрица:')
         for i in self.matrix:
             for j in i:
                 print(j, end='\t')
             print()
+        return self.matrix
 
     def __add__(self, other):
-        result = []
         k = 0
+        result = []
         for i in self.matrix:
-            for j in i:
-                result[k][j] = self.matrix[k][j] + other[k][j]
-                print(result[k][j])
+            res = []
+            for j in range(len(i)):
+                res.append((self.matrix[k][j] + other[k][j]))
+                print((self.matrix[k][j] + other[k][j]))
             k += 1
+            result.append(res)
         return result
-
-    
-
 
 
 mat1 = Matrix([[1, 2, 3], [2, 3, 4], [3, 4, 5]])
 mat2 = Matrix([[10, 20, 30], [20, 30, 40], [30, 40, 50]])
-# try:
-#     print(mat1)
-# except TypeError:
-#     pass
-# try:
-#     print(mat2)
-# except TypeError:
-#     pass
 try:
-    mat3 = mat1 + mat1
-    print(mat3)
+    print(mat1)
+except TypeError: # тут обернул т.к. выводится матрица + ошибка
+    pass
+try:
+    print(mat2)
 except TypeError:
     pass
-mat1.__add__(mat2)
 
 
-# mat4 = [[1, 2, 3], [2, 3, 4], [3, 4, 5]]
-# print(mat4[1][0])
+mat3 = mat1 + mat2 # не получается
+print(mat3, 'mat3')

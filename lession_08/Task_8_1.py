@@ -1,4 +1,3 @@
-#! python
 '''LOTO'''
 import random
 
@@ -6,7 +5,7 @@ class Karta_game:
 # """создание карточки игрока"""
     def __init__(self, user):
         self.user = user
-        self.digit = [x for x in range(1, 21)]
+        self.digit = [x for x in range(1, 91)]
         self.rows_card = []
         for i in range(3):
             row_karta = []
@@ -27,11 +26,10 @@ class Karta_game:
                 + ("-" * 26))
 
 
-
 class Game:
 # """игра"""
     def __init__(self, user1, user2):
-        self.meschok = [x for x in range(1, 21)]
+        self.meschok = [x for x in range(1, 91)]
         self.u1 = user1
         self.u2 = user2
 
@@ -49,17 +47,15 @@ class Game:
                     break
             elif 'n' == change:
                 continue
-
+            else:
+                print('проигрыш!')
+                break
             if egg in self.u2:
                 self.u2[self.u2.index(0)] = '-'
 
 
-
-
-
-
 user = Karta_game('Joker')
 comp = Karta_game("Computer")
-user.
-# first_game = Game(user, comp)
+
+first_game = Game(user, comp)
 # print(first_game)

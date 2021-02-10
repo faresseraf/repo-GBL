@@ -2,42 +2,64 @@
 '''LOTO'''
 import random
 
-class Karta:
-    bochka = [x for x in range(1, 91)]
-    def __init__(self, user=None):
+class Karta_game:
+# """создание карточки игрока"""
+    def __init__(self, user):
         self.user = user
-
-    def __str__(self):
-        print(self.user)
-        print('-' * 8, 'ВАША КАРТОЧКА', '-' * 8)
-        print(self.user, '\n', '-' * 26)
-        # print()
-        print('-' * 26)
-        pass
-
-    def karta_game(self):
-        rows_card = []
-        num_card = [x for x in range(1, 91)]
+        self.digit = [x for x in range(1, 21)]
+        self.rows_card = []
         for i in range(3):
             row_karta = []
             for x in range(5):
-                row_karta.append(num_card.pop(random.randint(0, len(num_card)-1)))
+                row_karta.append(self.digit.pop(random.randint(0, len(self.digit) - 1)))
             row_karta.sort()
-            # rows_card.append(list(row_karta))
-            rows_card += row_karta
-        # карточка готова
-        return rows_card
-user = Karta('Joker')
-print(user)
-# print(user.user)
-user_ka = user.karta_game()
-print(user_ka)
+            self.rows_card += row_karta
 
-meschok = [x for x in range(1, 91)]
-for t in range(35):
-    egg = meschok.pop(random.randint(0, len(meschok)-1))
-    # print(egg, end=' ')
-    if egg in user_ka:
-        user_ka[user_ka.index(egg)] = '-'
-print()
-print(user_ka)
+    # def __iter__(self):
+    #     return self.rows_card
+
+    def __str__(self):
+        return ('\n' + ("-" * 5) + 'КАРТОЧКА ' + self.user
+                + ("-" * 5) + '\n'
+                + str(self.rows_card[:5]) + '\n'
+                + str(self.rows_card[5:10]) + '\n'
+                + str(self.rows_card[10:14]) + '\n'
+                + ("-" * 26))
+
+
+
+class Game:
+# """игра"""
+    def __init__(self, user1, user2):
+        self.meschok = [x for x in range(1, 21)]
+        self.u1 = user1
+        self.u2 = user2
+
+        while True:
+            egg = self.meschok.pop(random.randint(0, len(self.meschok) - 1))
+            print(self.u1)
+            print(self.u2)
+            print('выпал бочонок: ', egg, end=' ')
+            change = input('Это число есть в ваше карте? введите y/n \n')
+            if egg in self.u1:
+                if 'y' == change:
+                    self.u1[self.u1.index(egg)] = '-'
+                elif 'n' == change:
+                    print('да нету - проигрыш!')
+                    break
+            elif 'n' == change:
+                continue
+
+            if egg in self.u2:
+                self.u2[self.u2.index(0)] = '-'
+
+
+
+
+
+
+user = Karta_game('Joker')
+comp = Karta_game("Computer")
+user.
+# first_game = Game(user, comp)
+# print(first_game)
